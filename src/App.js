@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.module.css';
 import Cards from './components/cards/Cards'
 import Chart from './components/chart/Chart'
@@ -8,23 +8,27 @@ import styles from './App.module.css'
 import {fetchData} from "./api";
 
 function App() {
-   useEffect( () => {
-     async function getData() {
-       await fetchData();
-     }
-    console.log(getData());
-    return () => {
-      // Anything in here is fired on component unmount.
-    }
-  }, []);
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        setData();
+        async function fetchMyAPI() {
+            let response = await fetchData();
+            setData(response);
+        }
 
-  return (
-    <div className={styles.container}>
-      <Cards/>
-      <CountryPicker/>
-      <Chart/>
-    </div>
-  );
+        fetchMyAPI();
+        return () => {
+            // Anything in here is fired on component unmount.
+        }
+    }, []);
+
+    return (
+        <div className={styles.container}>
+            <Cards data={data}/>
+            <CountryPicker/>
+            <Chart/>
+        </div>
+    );
 }
 
 export default App;
