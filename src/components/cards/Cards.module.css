@@ -1,19 +1,22 @@
 .container {
-    margin: 50px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px 0;
 }
 
 .card {
-    margin: 0 2% !important;
+  margin: 40px 2% !important;
 }
 
 .infected {
-    border-bottom: 10px solid rgba(0,0,255,.5);
+  border-bottom: 10px solid #00b8a9;
 }
 
 .recovered {
-    border-bottom: 10px solid rgba(0,255,255,.5);
+  border-bottom: 10px solid #f6416c;
 }
 
 .deaths {
-    border-bottom: 10px solid rgba(255,0,255,.5);
+  border-bottom: 10px solid #ffde7d;
 }
